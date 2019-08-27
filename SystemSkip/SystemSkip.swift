@@ -25,6 +25,7 @@ public enum SystemSkip: String {
     case photos = "Photos"
     case faceTime = "FACETIME"
     case wallPaper = "Wallpaper"
+    case setting = "app-settings:"
     
     /*----GeneralURLSchemhe--*/
     case about = "About"
@@ -38,6 +39,8 @@ extension SystemSkip {
         switch self {
         case .about, .accessibility, .keyboard, .international:
             return URL(string: "App-Prefs:root=General&path=\(self.rawValue)")
+        case .setting
+            return URL(string: UIApplication.openSettingsURLString)
         default:
             return URL(string: "App-Prefs:root=\(self.rawValue)")
         }
